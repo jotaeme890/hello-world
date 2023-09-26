@@ -1,0 +1,22 @@
+<ion-card class="card" [routerLink]="['/welcome', usuario?.id]">
+    <ion-card-header>
+        <div class="superior">
+            <ion-avatar>
+                <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+            </ion-avatar>
+            <ion-card-title>{{usuario?.firstName}}  {{usuario?.surname | letraApellido}}</ion-card-title> 
+        </div>
+    </ion-card-header>
+
+    <ion-card-content>
+        <ion-card-subtitle>Nombre</ion-card-subtitle>
+        <ion-card-content>{{usuario?.firstName}}</ion-card-content>
+    
+        <ion-card-subtitle>Apellido</ion-card-subtitle>
+        <ion-card-content>{{usuario?.surname}}</ion-card-content>
+    
+        <ion-card-subtitle>Edad</ion-card-subtitle>
+        <ion-card-content>{{usuario?.age}}</ion-card-content>
+    </ion-card-content>
+
+</ion-card>

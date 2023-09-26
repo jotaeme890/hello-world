@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { usuarios } from "../models/usuarios"
+
 
 @Component({
   selector: 'app-home',
@@ -6,7 +9,10 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  usuarios = usuarios
+  constructor(private _route: Router) {}
 
-  constructor() {}
-
+  welcome() {
+    this._route.navigate(["./welcome"])
+  }
 }

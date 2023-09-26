@@ -1,0 +1,36 @@
+
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-button (click)="home()">Home</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">welcome</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div *ngIf="nombre; then thenBlock else elseBlock"></div>
+  <ng-template #elseBlock>
+    <div id="container">
+      <div>
+        <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+        <input type="email" id="nombre">
+      </div>
+      <div>
+        <label for="exampleFormControlInput1" class="form-label">Apellido</label>
+        <input type="email" id="apellido">
+      </div>
+      <ion-button (click)="iniciarSesion()">Iniciar sesión</ion-button>
+  
+      <div id="usu"></div>
+    </div>
+  </ng-template>
+
+  <ng-template id="container" #thenBlock>
+      <h1>Welcome {{nombre}}</h1>
+  </ng-template>
+</ion-content>
