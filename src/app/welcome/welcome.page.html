@@ -12,9 +12,6 @@
       <ion-title size="large">welcome</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <div *ngIf="nombre; then thenBlock else elseBlock"></div>
-  <ng-template #elseBlock>
     <div id="container">
       <div>
         <label for="exampleFormControlInput1" class="form-label">Nombre</label>
@@ -28,9 +25,4 @@
   
       <div id="usu"></div>
     </div>
-  </ng-template>
-
-  <ng-template id="container" #thenBlock>
-      <h1>Welcome {{nombre}}</h1>
-  </ng-template>
 </ion-content>

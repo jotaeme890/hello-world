@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { usuarios } from '../models/usuarios';
 
 @Component({
   selector: 'app-welcome',
@@ -14,14 +13,6 @@ export class WelcomePage implements OnInit {
   constructor(private _route1:ActivatedRoute, private _route2:Router) {}
 
   ngOnInit() {
-    let id = this._route1.snapshot.paramMap.get("id")
-    if (id)
-      this.id =parseInt(id)
-
-    usuarios.forEach((e) => {
-      if(e.id == this.id)
-        this.nombre = e.firstName
-    })
   }
 
   home(){

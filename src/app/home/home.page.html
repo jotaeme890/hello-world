@@ -5,6 +5,6 @@
   </ion-header>
 <ion-content>
     <div class="cont">
-        <app-user-info *ngFor="let user of usuarios" [usuario]="user" ></app-user-info>
+        <app-user-info *ngFor="let user of user$ | async" [usuario]="user" (onFavClicked)="onFavClicked(user, $event)"></app-user-info>
     </div>
 </ion-content>
