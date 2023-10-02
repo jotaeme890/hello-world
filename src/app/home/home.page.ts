@@ -67,13 +67,13 @@ export class HomePage implements OnInit{
   onFavClicked(user: User, event: UserInfoFavClicked){
    const users = [...this._user.value];
    var index = users.findIndex(_user => _user.id === user.id);
-   if(index >= 0)
+   if(index != -1)
     users[index].fav = event.fav??false;
    this._user.next([...users]);
    
    const options:ToastOptions = {
     message:`${event.fav?`${user.firstName} ${user.surname} añadido`:`${user.firstName} ${user.surname} eliminado`} ${event.fav?'a':'de'} favoritos`, //mensaje del toast
-    duration:2000, // 1 segundo
+    duration:2000, // 2 segundo
     position:'bottom', // el toast se situa en la parte inferior
     color:'danger', // color del toast
     cssClass:'fav-ion-toast' //Una clase que podemos poner en global.scss para configurar el ion-toast
