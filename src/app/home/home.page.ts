@@ -72,7 +72,7 @@ export class HomePage implements OnInit{
       {
         next:u => {
           const op:ToastOptions = {
-            message: `Uusario eliminado`,
+            message: `Usario eliminado`,
             position: 'bottom',
             color: 'danger',
             duration: 1000
