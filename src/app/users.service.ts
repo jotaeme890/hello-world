@@ -109,7 +109,7 @@ export class UsersService implements UserInterface{
         if(i != -1){
           _users.splice(i,1)
           // _users = [..._users.slice(0,index),..._users.slice(index+1)];
-          observe.next()
+          observe.next(user)
           this._user.next(_users)
         } else
           observe.error(new UserNotFoundException())
