@@ -16,7 +16,12 @@
         color: purple;
         font-weight: bold;
     }
-    .arriba{
+    .arriba-izq{
+        position: absolute;
+        top: 10px;
+        right: 50px;
+    }
+    .arriba-der{
         position: absolute;
         top: 10px;
         right: 10px;

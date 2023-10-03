@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from './user';
-import { ToastController, ToastOptions } from '@ionic/angular';
+import { UsersService } from '../users.service';
 import { UserInfoFavClicked } from './user-info/userInfoFavClicked';
+import { ToastController, ToastOptions } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -13,73 +14,77 @@ import { UserInfoFavClicked } from './user-info/userInfoFavClicked';
 
 
 export class HomePage implements OnInit{
-  
-  private _user: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([])
-  user$: Observable<User[]> = this._user.asObservable()
 
-  constructor(private _route: Router, private _toast: ToastController) {}
+  public loading = true;
+
+  constructor(private _route: Router, public users:UsersService, public toast: ToastController) {}
 
   ngOnInit(): void {
-    let index = 0
-    let usuarios: User[] = [
-      {
-        id : 0,
-        firstName: "Pepe",
-        surname: "Viyuela",
-        age: 60,
-        fav: true
-      },
-      {
-        id : 1, 
-        firstName: "Javier Miguel",
-        surname: "Martín Gallardo",
-        age: 19,
-        fav: false
-      },
-      {
-        id : 2,
-        firstName: "Adrián",
-        surname: "Perogil Fernández",
-        age: 25_000_000,
-        fav: true
-      },
-      {
-        id : 3,
-        firstName: "Pedro",
-        surname: "Sánchez",
-        age: 47,
-        fav: false
-      }
-    ]
-    
-    setInterval(() => {
-      if(index < usuarios.length){
-        // .value ES COMO HACER UNA SUBSCRIPCION DIRECTA, Y AHORRAS LINEAS
-        let usu: User[] = this._user.value
-        usu.push(usuarios[index])
-        // next ES PARA QUE LAS SUBSCRIPCIONES RECIBAN LOS CAMBIOS
-        this._user.next(usu)
-        index++
-      }
-    },1000)
+    this.loading = true;
+    this.users.getAll().subscribe(u => {
+      this.loading = false;
+    });
   }
 
-  onFavClicked(user: User, event: UserInfoFavClicked){
-   const users = [...this._user.value];
-   var index = users.findIndex(_user => _user.id === user.id);
-   if(index != -1)
-    users[index].fav = event.fav??false;
-   this._user.next([...users]);
-   
-   const options:ToastOptions = {
-    message:`${event.fav?`${user.firstName} ${user.surname} añadido`:`${user.firstName} ${user.surname} eliminado`} ${event.fav?'a':'de'} favoritos`,
-    duration:2000,
-    position:'bottom',
-    color:'danger',
-    cssClass:'fav-ion-toast'
-   };
-   this._toast.create(options).then(_toast=>_toast.present());
- }
+  onFavClick(user: User, event: UserInfoFavClicked){
+    var _user: User = {...user}
+    _user.fav = event.fav??false
+    this.users.updateUser(_user).subscribe(
+      {
+        next: u => {
+          const op:ToastOptions = {
+            message: `El usuario ${_user.firstName} ${_user.surname} ha sido ${_user.fav?'añadido':'eliminado'} de favoritos`,
+            position: 'bottom',
+            color: 'danger',
+            duration: 1000
+          }
+          this.toast.create(op).then(t => t.present())
+        },
+        error: err => {
+          console.log(err);
+        }
+      }
+    )
+  }
+
+  onCardClick(user: User){
+    var _user: User = {...user}
+    this.users.getUser(_user.id).subscribe(
+      {
+        next: u => {
+          const op:ToastOptions = {
+            message: `${u.descripcion}`,
+            position: 'bottom',
+            duration: 5000
+          }
+          this.toast.create(op).then(t => t.present())
+        },
+        error: err => {
+          console.log(err);
+        }
+      }
+    )
+  }
+
+  onTrasClick(user: User){
+    var _user: User = {...user}
+    this.users.deleteUser(_user).subscribe(
+      {
+        next:u => {
+          const op:ToastOptions = {
+            message: `Uusario eliminado`,
+            position: 'bottom',
+            color: 'danger',
+            duration: 1000
+          }
+          this.toast.create(op).then(t => t.present())
+        },
+        error: err => {
+          console.log(err);
+        }
+      }
+      )
+  }
 
   welcome() {
     this._route.navigate(["./welcome"])

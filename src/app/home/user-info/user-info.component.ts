@@ -18,11 +18,23 @@ export class UserInfoComponent implements OnInit{
   }
   
   @Output() onFavClicked:EventEmitter<UserInfoFavClicked> = new EventEmitter<UserInfoFavClicked>
+  @Output() onCardClicked:EventEmitter<void> = new EventEmitter<void>
+  @Output() onTrashClicked:EventEmitter<void> = new EventEmitter<void>
 
   onFavClick(event: any){
     this.onFavClicked.emit({
       fav:!(this.usuario?.fav??false)
     })
+    event.stopPropagation();
+  }
+
+  onTrashClick(event:any){
+    this.onTrashClicked.emit()
+    event.stopPropagation();
+  }
+
+  abrirUsuario(event:any){
+    this.onCardClicked.emit()
     event.stopPropagation();
   }
 

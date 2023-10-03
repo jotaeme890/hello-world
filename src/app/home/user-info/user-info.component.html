@@ -1,4 +1,4 @@
-<ion-card class="card">
+<ion-card class="card" (click)="abrirUsuario($event)">
     <ion-card-header>
         <div class="superior">
             <ion-avatar>
@@ -6,9 +6,13 @@
             </ion-avatar>
             <ion-card-title>{{usuario?.firstName}}  {{usuario?.surname | letraApellido}}</ion-card-title>
 
-            <ion-button class="fav-button arriba" fill="clear" aria-label="Favorite" (click)="onFavClick($event)">
+            <ion-button class="fav-button arriba-izq" fill="clear" aria-label="Favorite" (click)="onFavClick($event)">
                 <ion-icon *ngIf="usuario?.fav == true" slot="icon-only" color="danger" name="heart" aria-hidden="true"></ion-icon>
                 <ion-icon *ngIf="usuario?.fav == false" slot="icon-only" color="medium" name="heart-outline" aria-hidden="true"></ion-icon>
+            </ion-button>
+
+            <ion-button class="fav-button arriba-der" fill="clear" aria-label="Favorite" (click)="onTrashClick($event)">
+                <ion-icon slot="icon-only" color="danger" name="trash" aria-hidden="true"></ion-icon>
             </ion-button>
 
         </div>
