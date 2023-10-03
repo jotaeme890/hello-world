@@ -6,7 +6,7 @@
             </ion-avatar>
             <ion-card-title>{{usuario?.firstName}}  {{usuario?.surname | letraApellido}}</ion-card-title>
 
-            <ion-button class="fav-button" fill="clear" aria-label="Favorite" (click)="onFavClick($event)">
+            <ion-button class="fav-button arriba" fill="clear" aria-label="Favorite" (click)="onFavClick($event)">
                 <ion-icon *ngIf="usuario?.fav == true" slot="icon-only" color="danger" name="heart" aria-hidden="true"></ion-icon>
                 <ion-icon *ngIf="usuario?.fav == false" slot="icon-only" color="medium" name="heart-outline" aria-hidden="true"></ion-icon>
             </ion-button>
