@@ -23,7 +23,7 @@ export class FavsService {
         observer.next(favs)
         this._fav.next(favs)
         observer.complete()
-      },2000)
+      },3000)
     })
   }
 
