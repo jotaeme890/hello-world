@@ -1,12 +1,12 @@
 <ion-header [translucent]="true">
     <ion-toolbar>
-      <ion-button (click)="welcome()">Welcome</ion-button>
+      <ion-button (click)="welcome()">Ir a welcome</ion-button>
       <ion-button >Favoritos</ion-button>
     </ion-toolbar>
   </ion-header>
 <ion-content>
     <div class="cont">
-        <app-user-info *ngFor="let user of users.user$ | async" [usuario]="user"  (onTrashClicked)="onTrasClick(user)" (onCardClicked)="onCardClick(user)"  (onFavClicked)="onFavClick(user, $event)"></app-user-info>
+        <app-user-info *ngFor="let user of (users.user$ | async) | favs:(favs.fav$ | async)" [usuario]="user"  (onTrashClicked)="onTrasClick(user)" (onCardClicked)="onCardClick(user)"  (onFavClicked)="onFavClick(user, $event)"></app-user-info>
     </div>
     <ion-loading [isOpen]="loading" message="Cargando..."></ion-loading>
 </ion-content>

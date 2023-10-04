@@ -8,6 +8,7 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { LetraApellidoPipe } from '../pipes/letra-apellido.pipe';
+import { FavsPipe } from '../favs.pipe';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { LetraApellidoPipe } from '../pipes/letra-apellido.pipe';
   declarations: [
     HomePage, 
     UserInfoComponent,
-    LetraApellidoPipe
+    LetraApellidoPipe,
+    FavsPipe
   ]
 })
 export class HomePageModule {}

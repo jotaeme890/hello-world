@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from './user';
 import { UsersService } from '../users.service';
 import { UserInfoFavClicked } from './user-info/userInfoFavClicked';
 import { ToastController, ToastOptions } from '@ionic/angular';
+import { FavsService } from '../favs.service';
+import { zip } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -17,23 +18,22 @@ export class HomePage implements OnInit{
 
   public loading = true;
 
-  constructor(private _route: Router, public users:UsersService, public toast: ToastController) {}
+  constructor(private _route: Router, public users:UsersService, public toast: ToastController, public favs: FavsService) {}
 
   ngOnInit(): void {
     this.loading = true;
-    this.users.getAll().subscribe(u => {
+    zip(this.users.getAll(), this.favs.getAll()).subscribe(u => {
       this.loading = false;
     });
   }
 
   onFavClick(user: User, event: UserInfoFavClicked){
-    var _user: User = {...user}
-    _user.fav = event.fav??false
-    this.users.updateUser(_user).subscribe(
+    let obs = (event?.fav)?this.favs.addFav(user.id):this.favs.deleteFav(user.id);
+    obs.subscribe(
       {
-        next: u => {
+        next: _ => {
           const op:ToastOptions = {
-            message: `El usuario ${_user.firstName} ${_user.surname} ha sido ${_user.fav?'añadido':'eliminado'} de favoritos`,
+            message: `El usuario ${user.firstName} ${user.surname} ha sido ${user.fav?'eliminado':'añadido'} de favoritos`,
             position: 'bottom',
             color: 'danger',
             duration: 1000
