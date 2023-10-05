@@ -33,7 +33,7 @@ export class HomePage implements OnInit{
       {
         next: _ => {
           const op:ToastOptions = {
-            message: `El usuario ${user.firstName} ${user.surname} ha sido ${user.fav?'eliminado':'añadido'} de favoritos`,
+            message: `El usuario ${user.firstName} ${user.surname} ha sido ${event.fav?'añadido':'eliminado'} de favoritos`,
             position: 'bottom',
             color: 'danger',
             duration: 1000
