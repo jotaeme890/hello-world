@@ -6,6 +6,7 @@ import { UserInfoFavClicked } from '../shared/components/user-info/userInfoFavCl
 import { ToastController, ToastOptions } from '@ionic/angular';
 import { FavsService } from '../services/favs.service';
 import { zip } from 'rxjs';
+import { Fav } from './fav';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +30,7 @@ export class HomePage implements OnInit{
 
   onFavClick(user: User, event: UserInfoFavClicked){
     let obs = (event?.fav)?this.favs.addFav(user.id):this.favs.deleteFav(user.id);
-    obs.subscribe(
+    obs.subscribe( 
       {
         next: _ => {
           const op:ToastOptions = {
@@ -83,6 +84,27 @@ export class HomePage implements OnInit{
           console.log(err);
         }
       }
+    )
+  }
+
+  onTrashClickFav(fav: Fav){
+    var _fav: Fav = {...fav}
+    if(_fav)
+      this.favs.deleteFav(_fav.userId).subscribe(
+        {
+          next:u => {
+            const op:ToastOptions = {
+              message: `Favorito eliminado`,
+              position: 'bottom',
+              color: 'danger',
+              duration: 1000
+            }
+            this.toast.create(op).then(t => t.present())
+          },
+          error: err => {
+            console.log(err);
+          }
+        }
       )
   }
 }

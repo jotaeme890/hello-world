@@ -1,3 +1,3 @@
 export interface Fav {
-    userId: number
+    userId: number | undefined
 }

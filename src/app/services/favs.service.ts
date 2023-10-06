@@ -42,7 +42,7 @@ export class FavsService {
     })
   }
 
-  deleteFav(uId: number): Observable<void>{
+  deleteFav(uId: number | undefined): Observable<void>{
     return new Observable(observer => {
       let _favs = [...this._fav.value]
       let i = _favs.findIndex(u => u.userId == uId)

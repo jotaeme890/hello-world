@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { UserInfoFavClicked } from './userInfoFavClicked';
+import { User } from 'src/app/home/user';
 
 @Component({
   selector: 'app-user-info',
@@ -9,13 +10,7 @@ import { UserInfoFavClicked } from './userInfoFavClicked';
 
 export class UserInfoComponent implements OnInit{
   // SI AQUI HACEMOS UN SETTER Y UN GETTER, PODRIAMOS EJECUTAR CODIGO CUANDO RECIBIMOS EL VALOR 
-  @Input() usuario?: {
-    id:number
-    firstName?: string
-    surname?: string
-    age: number
-    fav: boolean
-  }
+  @Input() usuario:User | null=null
   
   @Output() onFavClicked:EventEmitter<UserInfoFavClicked> = new EventEmitter<UserInfoFavClicked>
   @Output() onCardClicked:EventEmitter<void> = new EventEmitter<void>

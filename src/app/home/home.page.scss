@@ -1,6 +1,16 @@
-.cont {
+h1{
+  text-align: center;
+}
+.dividir{
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.cont {
+  display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
 }
