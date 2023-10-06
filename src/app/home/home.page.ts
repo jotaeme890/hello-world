@@ -66,7 +66,7 @@ export class HomePage implements OnInit{
     )
   }
 
-  onTrasClick(user: User){
+  onTrashClick(user: User){
     var _user: User = {...user}
     this.users.deleteUser(_user).subscribe(
       {

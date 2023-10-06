@@ -9,6 +9,7 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { LetraApellidoPipe } from '../pipes/letra-apellido.pipe';
 import { FavsPipe } from '../favs.pipe';
+import { HighlightDirective } from './highlight.directive';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { FavsPipe } from '../favs.pipe';
     HomePage, 
     UserInfoComponent,
     LetraApellidoPipe,
-    FavsPipe
+    FavsPipe,
+    HighlightDirective
   ]
 })
 export class HomePageModule {}
