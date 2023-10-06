@@ -1,0 +1,32 @@
+<ion-card class="card" (click)="abrirUsuario($event)">
+    <ion-card-header>
+        <div class="superior">
+            <ion-avatar>
+                <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+            </ion-avatar>
+            <ion-card-title>{{usuario?.firstName}}  {{usuario?.surname | letraApellido}}</ion-card-title>
+
+            <ion-button class="fav-button arriba-izq" fill="clear" aria-label="Favorite" (click)="onFavClick($event)">
+                <ion-icon *ngIf="usuario?.fav == true" slot="icon-only" color="danger" name="heart" aria-hidden="true"></ion-icon>
+                <ion-icon *ngIf="usuario?.fav == false" slot="icon-only" color="medium" name="heart-outline" aria-hidden="true"></ion-icon>
+            </ion-button>
+
+            <ion-button class="fav-button arriba-der" fill="clear" aria-label="Favorite" (click)="onTrashClick($event)">
+                <ion-icon slot="icon-only" color="danger" name="trash" aria-hidden="true"></ion-icon>
+            </ion-button>
+
+        </div>
+    </ion-card-header>
+
+    <ion-card-content>
+        <ion-card-subtitle>Nombre</ion-card-subtitle>
+        <ion-card-content>{{usuario?.firstName}}</ion-card-content>
+    
+        <ion-card-subtitle>Apellido</ion-card-subtitle>
+        <ion-card-content>{{usuario?.surname}}</ion-card-content>
+    
+        <ion-card-subtitle>Edad</ion-card-subtitle>
+        <ion-card-content>{{usuario?.age}}</ion-card-content>
+    </ion-card-content>
+
+</ion-card>

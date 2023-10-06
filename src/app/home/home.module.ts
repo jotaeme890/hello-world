@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 
-import { UserInfoComponent } from "./user-info/user-info.component"
+import { UserInfoComponent } from "../shared/components/user-info/user-info.component"
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
-import { LetraApellidoPipe } from '../pipes/letra-apellido.pipe';
-import { FavsPipe } from '../favs.pipe';
-import { HighlightDirective } from './highlight.directive';
+import { FavsPipe } from './favs.pipe';
+import { HighlightDirective } from '../shared/directives/highlight.directive';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -17,12 +17,11 @@ import { HighlightDirective } from './highlight.directive';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    SharedModule
   ],
   declarations: [
-    HomePage, 
-    UserInfoComponent,
-    LetraApellidoPipe,
+    HomePage,
     FavsPipe,
     HighlightDirective
   ]

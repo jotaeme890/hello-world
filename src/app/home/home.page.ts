@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from './user';
-import { UsersService } from '../users.service';
-import { UserInfoFavClicked } from './user-info/userInfoFavClicked';
+import { UsersService } from '../services/users.service';
+import { UserInfoFavClicked } from '../shared/components/user-info/userInfoFavClicked';
 import { ToastController, ToastOptions } from '@ionic/angular';
-import { FavsService } from '../favs.service';
+import { FavsService } from '../services/favs.service';
 import { zip } from 'rxjs';
 
 @Component({

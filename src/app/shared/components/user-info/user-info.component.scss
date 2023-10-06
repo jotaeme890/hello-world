@@ -1,0 +1,35 @@
+.card{
+    background-color: rgb(23, 24, 24);
+    width: 420px;
+    height: 270px;
+}
+
+.superior {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    ion-img {
+        width: 70px;
+        display: inline;
+    }
+    ion-card-title {
+        color: purple;
+        font-weight: bold;
+    }
+    .arriba-izq{
+        position: absolute;
+        top: 10px;
+        right: 50px;
+    }
+    .arriba-der{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+}
+
+ion-card-subtitle{
+    margin-bottom: -15px;
+    color: white;
+}
+
