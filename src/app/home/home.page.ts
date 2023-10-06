@@ -18,7 +18,7 @@ export class HomePage implements OnInit{
 
   public loading = true;
 
-  constructor(private _route: Router, public users:UsersService, public toast: ToastController, public favs: FavsService) {}
+  constructor(public users:UsersService, public toast: ToastController, public favs: FavsService) {}
 
   ngOnInit(): void {
     this.loading = true;
@@ -84,10 +84,6 @@ export class HomePage implements OnInit{
         }
       }
       )
-  }
-
-  welcome() {
-    this._route.navigate(["./welcome"])
   }
 }
  
