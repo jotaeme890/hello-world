@@ -4,17 +4,7 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
   selector: '[appHighLight]'
 })
 export class HighlightDirective {
-
-  private _color:string = "transparent";
-  @Input() set appHighLight(color:string){
-    this._color = color;
-  }
-  get appHighLight():string{
-    return this._color;
-  }
-  constructor(
-    private el:ElementRef
-  ) {
+  constructor(private el:ElementRef) {
     this.unsetHighlight();
   }
 
@@ -31,5 +21,5 @@ export class HighlightDirective {
   }
   private unsetHighlight(){
     this.el.nativeElement.classList.remove('highlight');
-    }
+  }
 }
