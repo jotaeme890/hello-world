@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { User } from 'src/app/home/user';
 import { FavsService } from 'src/app/services/favs.service';
 import { UsersService } from 'src/app/services/users.service';
+import { User } from '../user-info/user';
 
 @Component({
   selector: 'app-fav-info',

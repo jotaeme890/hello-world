@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from './user';
+import { User } from '../shared/components/user-info/user';
 import { UsersService } from '../services/users.service';
 import { UserInfoFavClicked } from '../shared/components/user-info/userInfoFavClicked';
 import { ToastController, ToastOptions } from '@ionic/angular';
