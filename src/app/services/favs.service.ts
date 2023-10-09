@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Fav } from '../home/fav';
+import { Fav } from '../shared/components/fav-info/fav';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../shared/components/user-info/user';
 

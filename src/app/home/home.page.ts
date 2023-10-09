@@ -6,7 +6,7 @@ import { UserInfoFavClicked } from '../shared/components/user-info/userInfoFavCl
 import { ToastController, ToastOptions } from '@ionic/angular';
 import { FavsService } from '../services/favs.service';
 import { zip } from 'rxjs';
-import { Fav } from './fav';
+import { Fav } from '../shared/components/fav-info/fav';
 
 @Component({
   selector: 'app-home',
