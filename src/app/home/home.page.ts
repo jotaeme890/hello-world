@@ -69,11 +69,11 @@ export class HomePage implements OnInit{
 
   onTrashClick(user: User){
     var _user: User = {...user}
-    this.users.deleteUser(_user).subscribe(
+    zip(this.favs.deleteFav(user.id),this.users.deleteUser(_user)).subscribe(
       {
         next:u => {
           const op:ToastOptions = {
-            message: `Usario eliminado`,
+            message: `El usuario ${user.firstName} ${user.surname} ha sido borrado`,
             position: 'bottom',
             color: 'danger',
             duration: 1000

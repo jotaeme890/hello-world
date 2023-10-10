@@ -15,7 +15,6 @@ export interface UserInterface{
 @Injectable({
   providedIn: 'root'
 })
-
 export class UsersService implements UserInterface{
 
   private _user: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([])
