@@ -29,13 +29,8 @@
     border-radius:1rem;
     animation-name: shake;
     animation-duration: 0.2s;
-    animation-iteration-count: 3;
-    animation-direction: alternate-reverse;
 }
 @keyframes shake {
     0%   {transform: rotate(2deg);}
-    25%  {transform: rotate(0deg);}
-    50%  {transform: rotate(-2deg);}
-    75%  {transform: rotate(-4deg);}
-    100%  {transform: rotate(-6deg);}
+    100%  {transform: rotate(-2deg);}
 }

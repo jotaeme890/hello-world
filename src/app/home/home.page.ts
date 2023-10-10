@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../shared/components/user-info/user';
+import { User } from '../shared/interfaces/user';
 import { UsersService } from '../services/users.service';
 import { UserInfoFavClicked } from '../shared/components/user-info/userInfoFavClicked';
 import { ToastController, ToastOptions } from '@ionic/angular';
 import { FavsService } from '../services/favs.service';
 import { zip } from 'rxjs';
-import { Fav } from '../shared/components/fav-info/fav';
+import { Fav } from '../shared/interfaces/fav';
 
 @Component({
   selector: 'app-home',
