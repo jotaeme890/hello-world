@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
-import { FavsPipe } from './favs.pipe';
+import { FavsPipe } from '../shared/pipes/favs.pipe';
 import { HighlightDirective } from '../shared/directives/highlight.directive';
 import { SharedModule } from '../shared/shared.module';
 
