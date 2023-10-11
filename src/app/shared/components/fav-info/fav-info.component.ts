@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FavsService } from 'src/app/services/favs.service';
-import { UsersService } from 'src/app/services/users.service';
+import { FavsService } from 'src/app/shared/services/favs.service';
+import { UsersService } from 'src/app/shared/services/users.service';
 import { User } from '../../interfaces/user';
 
 @Component({
@@ -11,8 +11,7 @@ import { User } from '../../interfaces/user';
 export class FavInfoComponent  implements OnInit {
   
   @Input() id:number | undefined
- 
-  nombre: string = ""
+  usuario!: User
 
   constructor(public favs: FavsService, public user: UsersService) { }
 
@@ -20,9 +19,8 @@ export class FavInfoComponent  implements OnInit {
     this.user.user$.subscribe(observe =>{
       let user:User | undefined  = observe.find(u => this.id == u.id)
       if(user)
-        this.nombre = user.firstName
-    }
-    )
+        this.usuario = user
+    })
   }
 
   @Output()   onTrashClickedFav:EventEmitter<void> = new EventEmitter<void>

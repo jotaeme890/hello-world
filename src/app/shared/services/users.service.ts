@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from '../shared/interfaces/user';
+import { User } from '../interfaces/user';
 
 export class UserNotFoundException extends Error {
 }
@@ -97,6 +97,16 @@ export class UsersService implements UserInterface{
         observe.error(new UserNotFoundException())
       // Acaba el observador
       observe.complete()
+    })
+  }
+
+  addUser(user: User):Observable<void>{
+    return new Observable(observe => {
+        var _users = [...this._user.value]
+        _users.push(user)
+        this._user.next(_users)
+        observe.next()
+        observe.complete()
     })
   }
 

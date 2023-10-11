@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { User } from '../shared/interfaces/user';
-import { UsersService } from '../services/users.service';
-import { UserInfoFavClicked } from '../shared/components/user-info/userInfoFavClicked';
-import { ToastController, ToastOptions } from '@ionic/angular';
-import { FavsService } from '../services/favs.service';
+import { User } from '../../shared/interfaces/user';
+import { UsersService } from '../../shared/services/users.service';
+import { UserInfoFavClicked } from '../../shared/components/user-info/userInfoFavClicked';
+import { ModalController, ToastController, ToastOptions } from '@ionic/angular';
+import { FavsService } from '../../shared/services/favs.service';
 import { zip } from 'rxjs';
-import { Fav } from '../shared/interfaces/fav';
+import { Fav } from '../../shared/interfaces/fav';
+import { UserFormComponent } from 'src/app/shared/components/user-form/user-form.component';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +19,7 @@ export class HomePage implements OnInit{
 
   public loading = true;
 
-  constructor(public users:UsersService, public toast: ToastController, public favs: FavsService) {}
+  constructor(public users:UsersService, public toast: ToastController, public favs: FavsService, public modal: ModalController) {}
 
   ngOnInit(): void {
     this.loading = true;
@@ -106,6 +106,27 @@ export class HomePage implements OnInit{
           }
         }
       )
+  }
+
+  abrirForm(onDissmiss:((result:any) => void)){
+    const modal = this.modal.create( {
+      component: UserFormComponent,
+      cssClass: "modal"
+    }).then(modal => {
+      modal.present();
+      modal.onDidDismiss().then(result => {
+        if(result && result.data)
+          onDissmiss(result.data)
+      })
+    })
+  }
+
+  onNewUser(newUser: any){
+    var onDismiss = ((data:any) => {
+      console.log(data);
+      this.users.addUser(data).subscribe()
+    })
+    this.abrirForm(onDismiss)
   }
 }
  

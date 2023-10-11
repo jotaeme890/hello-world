@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Fav } from '../shared/interfaces/fav';
+import { Fav } from '../interfaces/fav';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from '../shared/interfaces/user';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root' // Esto se hace para que sea accesible de manera global
