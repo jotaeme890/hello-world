@@ -123,7 +123,6 @@ export class HomePage implements OnInit{
 
   onNewUser(newUser: any){
     var onDismiss = ((data:any) => {
-      console.log(data);
       this.users.addUser(data).subscribe()
     })
     this.abrirForm(onDismiss)

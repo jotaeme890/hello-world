@@ -6,6 +6,7 @@ import { LetraApellidoPipe } from './pipes/letra-apellido.pipe';
 import { FavInfoComponent } from './components/fav-info/fav-info.component';
 import { FavsPipe } from './pipes/favs.pipe';
 import { UserFormComponent } from './components/user-form/user-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -20,7 +21,8 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 
   imports: [
     CommonModule,
-    IonicModule
+    IonicModule,
+    ReactiveFormsModule
   ],
   
   exports: [
