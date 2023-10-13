@@ -58,14 +58,7 @@ export class HomePage implements OnInit{
 
     revertirCambios(idUsu: number, esFav: boolean){
       let obs = esFav ? this.favs.addFav(idUsu) : this.favs.deleteFav(idUsu);
-      obs.subscribe({
-        next: _ => {
-          console.log("Revertido");
-        },
-        error: _ => {
-          console.log("Fallo");
-        }
-      })
+      obs.subscribe()
     }
 
   onCardClick(user: User){
