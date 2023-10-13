@@ -42,7 +42,7 @@ export class HomePage implements OnInit{
               {
                 text:"Revertir",
                 handler: () => {
-                  this.revertirCambios(user.id, !event.fav)
+                  this.revertirCambios(user.id, event.fav)
                 } 
               }
             ]
@@ -56,8 +56,8 @@ export class HomePage implements OnInit{
       )
     }
 
-    revertirCambios(idUsu: number, esFav: boolean){
-      let obs = esFav ? this.favs.addFav(idUsu) : this.favs.deleteFav(idUsu);
+    revertirCambios(idUsu: number, esFav: boolean | undefined){
+      let obs = !esFav ? this.favs.addFav(idUsu) : this.favs.deleteFav(idUsu);
       obs.subscribe()
     }
 
