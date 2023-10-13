@@ -37,7 +37,15 @@ export class HomePage implements OnInit{
             message: `El usuario ${user.firstName} ${user.surname} ha sido ${event.fav?'añadido':'eliminado'} de favoritos`,
             position: 'bottom',
             color: 'danger',
-            duration: 1000
+            duration: 3000,
+            buttons: [
+              {
+                text:"Revertir",
+                handler: () => {
+                  this.revertirCambios(user.id, !event.fav)
+                } 
+              }
+            ]
           }
           this.toast.create(op).then(t => t.present())
         },
@@ -45,8 +53,20 @@ export class HomePage implements OnInit{
           console.log(err);
         }
       }
-    )
-  }
+      )
+    }
+
+    revertirCambios(idUsu: number, esFav: boolean){
+      let obs = esFav ? this.favs.addFav(idUsu) : this.favs.deleteFav(idUsu);
+      obs.subscribe({
+        next: _ => {
+          console.log("Revertido");
+        },
+        error: _ => {
+          console.log("Fallo");
+        }
+      })
+    }
 
   onCardClick(user: User){
     var _user: User = {...user}
@@ -76,7 +96,8 @@ export class HomePage implements OnInit{
             message: `El usuario ${user.firstName} ${user.surname} ha sido borrado`,
             position: 'bottom',
             color: 'danger',
-            duration: 1000
+            duration: 1000,
+            
           }
           this.toast.create(op).then(t => t.present())
         },
@@ -86,6 +107,7 @@ export class HomePage implements OnInit{
       }
     )
   }
+
 
   onTrashClickFav(fav: Fav){
     var _fav: Fav = {...fav}

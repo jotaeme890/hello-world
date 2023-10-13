@@ -36,14 +36,12 @@ export class UserFormComponent  implements OnInit {
 
   onApply(form: FormGroup) {
     this.long = Math.ceil(Math.random()*100+6)
-    if(this.user){
-      this.user.id = this.long
-      this.user.firstName = form.value.name
-      this.user.age = form.value.age
-      this.user.descripcion = form.value.description
-      this.user.surname = form.value.surname
-      this.user.fav = false
-      this._modal.dismiss(this.user,"apply")
-    }
+    this.user.id = this.long
+    this.user.firstName = form.value.name
+    this.user.age = form.value.age
+    this.user.descripcion = form.value.description
+    this.user.surname = form.value.surname
+    this.user.fav = false
+    this._modal.dismiss(this.user,"apply")
   }
 }

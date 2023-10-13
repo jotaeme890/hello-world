@@ -112,7 +112,6 @@ export class UsersService implements UserInterface{
 
   deleteUser(user: User): Observable<User> {
     return new Observable(observe => {
-      setInterval(() => {
         var _users = [...this._user.value]
         var i = _users.findIndex(u => u.id == user.id)
         if(i != -1){
@@ -122,7 +121,6 @@ export class UsersService implements UserInterface{
           this._user.next(_users)
         } else
           observe.error(new UserNotFoundException())
-      },500)
     })
   }
 }
