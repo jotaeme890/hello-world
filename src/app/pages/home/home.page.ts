@@ -143,7 +143,8 @@ export class HomePage implements OnInit{
       componentProps: {
         mode:data?"Edit":"New",
         user:data
-      }
+      },
+      cssClass: "modal"
     }).then(modal => {
       modal.present();
       modal.onDidDismiss().then(result => {

@@ -22,6 +22,7 @@ export class UserDetailComponent  implements OnInit {
   }
 
   form: FormGroup
+  todo: boolean
   constructor(
     private modal: ModalController,
     private formBuilder: FormBuilder,
@@ -34,6 +35,7 @@ export class UserDetailComponent  implements OnInit {
       descripcion: ['', [Validators.required]],
       age: [0, [Validators.required]],
     })
+    this.todo = false
   }
 
   ngOnInit() {}
