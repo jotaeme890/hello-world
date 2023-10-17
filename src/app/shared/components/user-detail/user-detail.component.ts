@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
 import { User } from '../../interfaces/user';
 
 @Component({
@@ -24,7 +24,8 @@ export class UserDetailComponent  implements OnInit {
   form: FormGroup
   constructor(
     private modal: ModalController,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public plataforma: Platform
   ) { 
     this.form = this.formBuilder.group({
       id: [null],
