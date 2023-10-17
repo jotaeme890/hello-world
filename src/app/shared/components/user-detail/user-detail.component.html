@@ -10,7 +10,7 @@
       {{mode=='New'?'Crear usuario':'Modificar usuario'}}
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button  *ngIf="mode=='Edit'" color="primary" fill="clear" (click)="onDelete()">
+      <ion-button  *ngIf="mode=='Edit'" color="danger" fill="clear" (click)="onDelete()">
         <ion-icon slot="icon-only" name="trash"></ion-icon>
       </ion-button>
     </ion-buttons>
