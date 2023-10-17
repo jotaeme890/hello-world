@@ -5,8 +5,8 @@ import { IonicModule } from '@ionic/angular';
 import { LetraApellidoPipe } from './pipes/letra-apellido.pipe';
 import { FavInfoComponent } from './components/fav-info/fav-info.component';
 import { FavsPipe } from './pipes/favs.pipe';
-import { UserFormComponent } from './components/user-form/user-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
 
 
 
@@ -16,7 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     LetraApellidoPipe,
     FavInfoComponent,
     FavsPipe,
-    UserFormComponent
+    UserDetailComponent
   ],
 
   imports: [
@@ -31,7 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     UserInfoComponent,
     FavInfoComponent,
     FavsPipe,
-    UserFormComponent
+    UserDetailComponent
   ]
 })
 export class SharedModule { }

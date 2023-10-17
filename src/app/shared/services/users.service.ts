@@ -17,6 +17,7 @@ export interface UserInterface{
 })
 export class UsersService implements UserInterface{
 
+  id: number = 0
   private _user: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([])
   public user$: Observable<User[]> = this._user.asObservable()
 
@@ -61,6 +62,7 @@ export class UsersService implements UserInterface{
             fav: false
           }
         ]
+        this.id = 4
         this._user.next(usuarios);
         users.next(usuarios);
         // Acaba el observador
@@ -103,6 +105,7 @@ export class UsersService implements UserInterface{
   addUser(user: User):Observable<void>{
     return new Observable(observe => {
         var _users = [...this._user.value]
+        user.id = ++this.id
         _users.push(user)
         this._user.next(_users)
         observe.next()

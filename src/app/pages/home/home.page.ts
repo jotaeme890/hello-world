@@ -6,7 +6,7 @@ import { ModalController, ToastController, ToastOptions } from '@ionic/angular';
 import { FavsService } from '../../shared/services/favs.service';
 import { zip } from 'rxjs';
 import { Fav } from '../../shared/interfaces/fav';
-import { UserFormComponent } from 'src/app/shared/components/user-form/user-form.component';
+import { UserDetailComponent } from 'src/app/shared/components/user-detail/user-detail.component';
 
 @Component({
   selector: 'app-home',
@@ -62,22 +62,36 @@ export class HomePage implements OnInit{
     }
 
   onCardClick(user: User){
-    var _user: User = {...user}
-    this.users.getUser(_user.id).subscribe(
-      {
-        next: u => {
-          const op:ToastOptions = {
-            message: `${u.descripcion}`,
-            position: 'bottom',
-            duration: 5000
-          }
-          this.toast.create(op).then(t => t.present())
-        },
-        error: err => {
-          console.log(err);
+    var onDismiss = ((data:any) => {
+      switch(data.role){
+        case 'submit':{
+          this.users.updateUser(data.data).subscribe(
+            {
+              next: u => {
+                const op:ToastOptions = {
+                  message: `Usuario modificado`,
+                  position: 'bottom',
+                  duration: 2000
+                }
+                this.toast.create(op).then(t => t.present())
+              },
+              error: err => {
+                console.log(err);
+              }
+            }
+          )
+        }
+        break;
+        case "delete":{
+          zip(this.favs.deleteFav(data.data.id),this.users.deleteUser(data.data)).subscribe()
+        }
+        break;
+        default: {
+          console.error("No debería entrar");
         }
       }
-    )
+    })
+    this.abrirForm(user,onDismiss)
   }
 
   onTrashClick(user: User){
@@ -101,7 +115,6 @@ export class HomePage implements OnInit{
     )
   }
 
-
   onTrashClickFav(fav: Fav){
     var _fav: Fav = {...fav}
     if(_fav)
@@ -123,24 +136,50 @@ export class HomePage implements OnInit{
       )
   }
 
-  abrirForm(onDissmiss:((result:any) => void)){
+  // Va a recibir un parametro User, si nos pasan un usuario significa que vamos a crear un usuario, si lo pasamos es para mmodificar un usuario
+  abrirForm(data:User | null, onDissmiss:((result:any) => void)){
     const modal = this.modal.create( {
-      component: UserFormComponent,
-      cssClass: "modal"
+      component: UserDetailComponent,
+      componentProps: {
+        mode:data?"Edit":"New",
+        user:data
+      }
     }).then(modal => {
       modal.present();
       modal.onDidDismiss().then(result => {
         if(result && result.data)
-          onDissmiss(result.data)
+          onDissmiss(result)
       })
     })
   }
 
-  onNewUser(newUser: any){
+  onNewUser(){
     var onDismiss = ((data:any) => {
-      this.users.addUser(data).subscribe()
+      switch(data.role){
+        case 'submit':{
+          this.users.addUser(data.data).subscribe(
+            {
+              next: u => {
+                const op:ToastOptions = {
+                  message: `Usuario creado`,
+                  position: 'bottom',
+                  duration: 5000
+                }
+                this.toast.create(op).then(t => t.present())
+              },
+              error: err => {
+                console.log(err);
+              }
+            }
+          )
+        }
+        break;
+        default: {
+          console.error("No debería entrar");
+        }
+      }
     })
-    this.abrirForm(onDismiss)
+    this.abrirForm(null,onDismiss)
   }
 }
  

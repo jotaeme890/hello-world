@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="primary" fill="clear" (click)="onCancel()">
+          <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      <!--Según en el modo que nos pasen desde componentsProps, veremos su modo-->
+      {{mode=='New'?'Crear usuario':'Modificar usuario'}}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button  *ngIf="mode=='Edit'" color="primary" fill="clear" (click)="onDelete()">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()">
+    <ion-item>
+      <ion-input labelPlacement="start" label="Nombre" formControlName="firstName" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input labelPlacement="start" label="Apellido" formControlName="surname" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input labelPlacement="start" label="Descripción" formControlName="descripcion" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input labelPlacement="start" label="Edad" formControlName="age" type="number"></ion-input>
+    </ion-item>
+  </form>
+</ion-content>
+
+<ion-footer>
+  <!--disabled se usa para desactivar el botón mientras esté sucio (modificado) o no sea válido-->
+  <ion-button type="submit" [disabled]="!form.valid || !form.dirty" class="ion-padding" expand="full" (click)="onSubmit()">{{mode=='New'?'Añadir':'Guardar'}}</ion-button>
+</ion-footer>
