@@ -11,7 +11,7 @@ export interface UserInterface{
   getAll():Observable<User[]>;
   getUser(id: number):Observable<User>;
   updateUser(user:User):Observable<void>;
-  deleteUser(user:User):Observable<User>;
+  deleteUser(user:User):Observable<User[]>;
 }
 
 @Injectable({
@@ -36,8 +36,6 @@ export class UsersService implements UserInterface{
       var user = this._user.value.find(user => user.id == id)
       if(user)
         observer.next(user)
-      else
-        observer.error(new UserNotFoundException)
       observer.complete()
     })
   }
@@ -71,19 +69,14 @@ export class UsersService implements UserInterface{
         observe.next()
         observe.complete()
     })
+    //return this._http.post<User>(environment.URL_BASE + "/users" + user)
   }
 
-  deleteUser(user: User): Observable<User> {
-    return new Observable(observe => {
-        var _users = [...this._user.value]
-        var i = _users.findIndex(u => u.id == user.id)
-        if(i != -1){
-          _users.splice(i,1)
-          // _users = [..._users.slice(0,index),..._users.slice(index+1)];
-          observe.next(user)
-          this._user.next(_users)
-        } else
-          observe.error(new UserNotFoundException())
-    })
+  deleteUser(user: User): Observable<User[]> {
+    var userdel = this._http.delete<User[]>(environment.URL_BASE + "users/" + user.id).pipe(tap((result) => {
+      this._user.next(result)
+      this.getAll().subscribe()
+    }))
+    return userdel;
   }
 }

@@ -8,8 +8,10 @@ import { Fav } from '../interfaces/fav';
 export class FavsPipe implements PipeTransform {
 
   transform(users: User[] | null, favs: Fav[] | null): User[] {
-    let _users: User[] = [...users ?? []]
-    if(favs)
+    var _users = null
+    if (users && Array.isArray(users))
+      _users = [...users];
+    if(favs && _users)
       _users = _users.map( u => {
         return{
           id: u.id,
@@ -20,7 +22,10 @@ export class FavsPipe implements PipeTransform {
           fav: favs.reduce((p,f) => p || f.userId == u.id, false)
         }
       })
-    return _users
+    if (_users) {
+      return _users
+    }
+    return []
   }
 
 }
