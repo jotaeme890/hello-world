@@ -11,7 +11,6 @@ import { User } from 'src/app/shared/interfaces/user';
 export class UserInfoComponent implements OnInit{
   // SI AQUI HACEMOS UN SETTER Y UN GETTER, PODRIAMOS EJECUTAR CODIGO CUANDO RECIBIMOS EL VALOR 
   @Input() usuario:User | null=null
-  
   /* IMPLEMENTANDO SETTERS Y GETTERS, SERIA
   private _id:number = 0
   private _firstName: string = ""
@@ -51,7 +50,9 @@ export class UserInfoComponent implements OnInit{
     event.stopPropagation();
   }
 
-  constructor() {}
+  constructor() {
+    console.log(this.usuario);
+  }
   ngOnInit(){
   }
 }

@@ -11,7 +11,7 @@
     </div>
     <div *ngIf="!loading">
       <h1>Lista de favoritos</h1>
-      <app-fav-info *ngFor="let fav of favs.fav$ | async" [id]="fav?.userId" (onTrashClickedFav)="onTrashClickFav(fav)"></app-fav-info>
+      <app-fav-info *ngFor="let fav of favs.fav$ | async" [id]="fav.userId" (onTrashClickedFav)="onTrashClickFav(fav)"></app-fav-info>
     </div>
   </div>
   <ion-loading [isOpen]="loading" message="Cargando..."></ion-loading>

@@ -23,6 +23,7 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
     CommonModule,
     IonicModule,
     ReactiveFormsModule
+    
   ],
   
   exports: [

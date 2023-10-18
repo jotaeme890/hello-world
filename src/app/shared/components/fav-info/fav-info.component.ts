@@ -9,19 +9,25 @@ import { User } from '../../interfaces/user';
   styleUrls: ['./fav-info.component.scss'],
 })
 export class FavInfoComponent  implements OnInit {
-  
-  @Input() id:number | undefined
-  usuario!: User
+  private _id: number = 0
+  public user: User | null
 
-  constructor(public favs: FavsService, public user: UsersService) { }
-
-  ngOnInit() {
-    this.user.user$.subscribe(observe =>{
-      let user:User | undefined  = observe.find(u => this.id == u.id)
-      if(user)
-        this.usuario = user
-    })
+  @Input() set id(new_id:number){
+    this._id = new_id
+    if(this._id != 0){
+      this.users.getUser(this._id).subscribe(u => {
+        this.user = u
+      })
+    }
   }
+
+  get id():number{
+    return this._id
+  }
+
+  constructor(public favs: FavsService, public users: UsersService) { this.user = null }
+
+  ngOnInit() {}
 
   @Output()   onTrashClickedFav:EventEmitter<void> = new EventEmitter<void>
 

@@ -23,8 +23,9 @@ export class HomePage implements OnInit{
 
   ngOnInit(): void {
     this.loading = true;
-    zip(this.users.getAll(), this.favs.getAll()).subscribe(u => {
-      this.loading = false;
+    zip(this.users.getAll(), this.favs.getAll()).subscribe({
+      next: _ => {this.loading = false},
+      error: err => {console.log(err)}
     });
   }
 

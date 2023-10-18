@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { User } from '../interfaces/user';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 export class UserNotFoundException extends Error {
 }
@@ -21,54 +23,12 @@ export class UsersService implements UserInterface{
   private _user: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([])
   public user$: Observable<User[]> = this._user.asObservable()
 
-  constructor() { }
+  constructor(private _http: HttpClient) { }
   
   getAll(): Observable<User[]> {
-    
-    return new Observable(users => {
-      //  Para que tarde en cargar y podamos usar ion-loading
-      setTimeout(() => {
-        let usuarios: User[] = [
-          {
-            id : 0,
-            firstName: "Pepe",
-            surname: "Viyuela",
-            descripcion:"Actor muy conocido es España, siendo partícipe en muchas series con gran peso en su país.",
-            age: 60,
-            fav: false
-          },
-          {
-            id : 1, 
-            firstName: "Javier Miguel",
-            surname: "Martín Gallardo",
-            descripcion:"Un chaval que estudia un grado superior de programación",
-            age: 19,
-            fav: false
-          },
-          {
-            id : 2,
-            firstName: "Adrián",
-            surname: "Perogil Fernández",
-            descripcion:"Un hombre que ha vivido con los dinosaurios",
-            age: 25_000_000,
-            fav: false
-          },
-          {
-            id : 3,
-            firstName: "Pedro",
-            surname: "Sánchez",
-            descripcion:"Un hombre que no hace nada",
-            age: 47,
-            fav: false
-          }
-        ]
-        this.id = 4
-        this._user.next(usuarios);
-        users.next(usuarios);
-        // Acaba el observador
-        users.complete();
-      }, 2000)
-    })
+    return this._http.get<User[]>(environment.URL_BASE+"users").pipe(tap(users => {
+      this._user.next(users)
+    }))
   }
 
   getUser(id: number): Observable<User> {
