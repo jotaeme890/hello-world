@@ -66,7 +66,7 @@ export class HomePage implements OnInit{
     var onDismiss = ((data:any) => {
       switch(data.role){
         case 'submit':{
-          this.users.updateUser(data.data).subscribe(
+          this.users.updateUser(data.data.id, data.data).subscribe(
             {
               next: u => {
                 const op:ToastOptions = {
@@ -137,7 +137,7 @@ export class HomePage implements OnInit{
       )
   }
 
-  // Va a recibir un parametro User, si nos pasan un usuario significa que vamos a crear un usuario, si lo pasamos es para mmodificar un usuario
+  // Va a recibir un parametro User, si nos pasan un usuario significa que vamos a crear un usuario, si lo pasamos es para modificar un usuario
   abrirForm(data:User | null, onDissmiss:((result:any) => void)){
     const modal = this.modal.create( {
       component: UserDetailComponent,
