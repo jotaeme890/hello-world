@@ -50,9 +50,7 @@ export class UserInfoComponent implements OnInit{
     event.stopPropagation();
   }
 
-  constructor() {
-    console.log(this.usuario);
-  }
+  constructor() {}
   ngOnInit(){
   }
 }

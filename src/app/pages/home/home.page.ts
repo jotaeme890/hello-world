@@ -145,9 +145,9 @@ export class HomePage implements OnInit{
         mode:data?"Edit":"New",
         user:data
       }
-    }).then(modal => {
-      modal.present();
-      modal.onDidDismiss().then(result => {
+    }).then(pantalla => {
+      pantalla.present();
+      pantalla.onDidDismiss().then(result => {
         if(result && result.data)
           onDissmiss(result)
       })
@@ -158,6 +158,7 @@ export class HomePage implements OnInit{
     var onDismiss = ((data:any) => {
       switch(data.role){
         case 'submit':{
+          console.log(data.data);
           this.users.addUser(data.data).subscribe(
             {
               next: u => {
