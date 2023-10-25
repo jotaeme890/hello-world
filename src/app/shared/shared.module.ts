@@ -7,6 +7,7 @@ import { FavInfoComponent } from './components/fav-info/fav-info.component';
 import { FavsPipe } from './pipes/favs.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
+import { PictureSelectableComponent } from './components/picture-selectable/picture-selectable.component';
 
 
 
@@ -16,7 +17,8 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
     LetraApellidoPipe,
     FavInfoComponent,
     FavsPipe,
-    UserDetailComponent
+    UserDetailComponent,
+    PictureSelectableComponent
   ],
 
   imports: [
@@ -32,7 +34,8 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
     UserInfoComponent,
     FavInfoComponent,
     FavsPipe,
-    UserDetailComponent
+    UserDetailComponent,
+    PictureSelectableComponent
   ]
 })
 export class SharedModule { }

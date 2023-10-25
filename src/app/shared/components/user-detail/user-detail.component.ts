@@ -15,6 +15,7 @@ export class UserDetailComponent  implements OnInit {
     if(_user){
       this.mode = 'Edit';
       this.form.controls['id'].setValue(_user.id)
+      this.form.controls['picture'].setValue(_user.picture)
       this.form.controls['firstName'].setValue(_user.firstName)
       this.form.controls['surname'].setValue(_user.surname)
       this.form.controls['descripcion'].setValue(_user.descripcion)
@@ -23,7 +24,6 @@ export class UserDetailComponent  implements OnInit {
   }
 
   form: FormGroup
-  todo: boolean
   constructor(
     private modal: ModalController,
     private formBuilder: FormBuilder,
@@ -31,12 +31,12 @@ export class UserDetailComponent  implements OnInit {
   ) { 
     this.form = this.formBuilder.group({
       id: [null],
+      picture:[''],
       firstName: ['', [Validators.required]],
       surname: ['', [Validators.required]],
       descripcion: ['', [Validators.required]],
       age: [0, [Validators.required]],
     })
-    this.todo = false
   }
 
   ngOnInit() {}

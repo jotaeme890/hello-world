@@ -66,7 +66,7 @@ export class HomePage implements OnInit{
     var onDismiss = ((data:any) => {
       switch(data.role){
         case 'submit':{
-          this.users.updateUser(data.data.id, data.data).subscribe(
+          this.users.updateUser(data.data).subscribe(
             {
               next: u => {
                 const op:ToastOptions = {

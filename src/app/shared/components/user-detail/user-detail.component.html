@@ -19,6 +19,7 @@
 
 <ion-content class="ion-padding">
   <form [formGroup]="form" (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()">
+    <app-picture-selectable formControlName="picture"></app-picture-selectable>
     <ion-item>
       <ion-input labelPlacement="start" label="Nombre" formControlName="firstName" type="text"></ion-input>
     </ion-item>

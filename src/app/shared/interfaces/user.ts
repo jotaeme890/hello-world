@@ -4,5 +4,6 @@ export interface User{
     surname: string,
     descripcion: string,
     age: number,
-    fav:boolean
+    fav?:boolean,
+    picture?: string
 }
