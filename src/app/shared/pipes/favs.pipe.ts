@@ -19,6 +19,7 @@ export class FavsPipe implements PipeTransform {
           surname: u.surname,
           descripcion: u.descripcion,
           age: u.age,
+          picture: u.picture,
           fav: favs.reduce((p,f) => p || f.userId == u.id, false)
         }
       })
